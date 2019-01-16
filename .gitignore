@@ -63,3 +63,4 @@ typings/
 #Remove extras
 .pki
 shrinkwrap.yaml
+.glitch-assets
