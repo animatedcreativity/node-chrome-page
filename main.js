@@ -19,8 +19,8 @@ exports.page = function(link) {
         .then(function(html) {
           resolve(html);
         })
-        .catch(function() {
-          reject("Errors occured.");
+        .catch(function(error) {
+          reject(error);
         });
       await driver.quit();
     })();
