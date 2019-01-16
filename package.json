@@ -1,0 +1,31 @@
+{
+  "//1": "describes your app and its dependencies",
+  "//2": "https://docs.npmjs.com/files/package.json",
+  "//3": "updating this file will download and update your packages",
+  "name": "node-chrome-page",
+  "version": "0.0.1",
+  "description": "Simply fetch any web page using Chrome browser after the page's JavaScript is loaded.",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "selenium-webdriver": "^3.6.0",
+    "chromedriver": "^2.45.0",
+    "puppeteer": "^1.11.0"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "repository": {
+    "url": "https://github.com/animatedcreativity/node-chrome-page"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "chrome",
+    "selenium-webdriver",
+    "chromedriver",
+    "puppeteer"
+  ]
+}
