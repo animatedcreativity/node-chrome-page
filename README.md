@@ -4,8 +4,8 @@ Simply fetch any web page using chrome browser after the page's JavaScript is lo
 Example:
 
 ```
-require("node-chrome-page", 10) // will cache this page for next 10 seconds, default is 0 and it means no cache.
-  .page("https://google.com")
+require("node-chrome-page")
+  .page("https://google.com", 10)  // will cache this page for next 10 seconds, default is 0 and it means no cache.
   .then(function(html) {
     console.log(html);
   })
