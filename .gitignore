@@ -64,3 +64,5 @@ typings/
 .pki
 shrinkwrap.yaml
 .glitch-assets
+.nano
+ip.sh
