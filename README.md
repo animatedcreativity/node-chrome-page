@@ -3,11 +3,20 @@ Simply fetch any web page using chrome browser after the page's JavaScript is lo
 
 Example:
 
-require("node-chrome-page")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;.page("https://google.com")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;.then(function(html) {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(html);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;})<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;.catch(function(error) {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(error);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;});
+```
+require("node-chrome-page", 10) // will cache this page for next 10 seconds, default is 0 and it means no cache.
+  .page("https://google.com")
+  .then(function(html) {
+    console.log(html);
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+```
+
+------------------------------------------------
+
+**Version history:**
+
+**v0.0.6:**<br/>
+Added cache support.
