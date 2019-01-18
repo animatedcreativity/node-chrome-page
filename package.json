@@ -3,7 +3,7 @@
   "//2": "https://docs.npmjs.com/files/package.json",
   "//3": "updating this file will download and update your packages",
   "name": "node-chrome-page",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Simply fetch any web page using Chrome browser after the page's JavaScript is loaded.",
   "main": "main.js",
   "scripts": {
