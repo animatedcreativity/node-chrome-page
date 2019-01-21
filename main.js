@@ -12,7 +12,7 @@ exports.page = function(link, time) {
     (async function() {
       if (typeof time === "undefined") time = 0; // no cache
       var html = pageCache.get(link);
-      if (html != null && typeof html !== "undefined" && time > 0) {
+      if (html != null && typeof html !== "undefined" && html.split("To keep Glitch fast for everyone").length <= 1 && time > 0) {
         resolve(html);
       } else {
         var webdriver = require('selenium-webdriver');
