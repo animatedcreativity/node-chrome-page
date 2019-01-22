@@ -1,13 +1,27 @@
 # node-chrome-page
 Simply fetch any web page using chrome browser after the page's JavaScript is loaded.
 
-**Example (from v0.0.9 to latest):**
+--------------------------------------------
+
+**Usage:**
+
+```
+var chromePage = require("node-chrome-page");
+var chrome = new chromePage();
+chrome.page(link, cacheTime, cacheFile);
+```
+
+- link: Page to fetch
+- cacheTime: Time to cache the page in seconds. (OPTIONAL)
+- cacheFile: File to use for cache. (OPTIONAL)
+
+**Example (latest):**
 
 ```
 var chromePage = require("node-chrome-page");
 var chrome = new chromePage();
 chrome
-  .page("https://google.com", 10)  // will cache this page for next 10 seconds, default is 0 and it means no cache.
+  .page("https://google.com", 10, "node-chrome-page.json")
   .then(function(html) {
     console.log(html);
   })
@@ -20,7 +34,7 @@ chrome
 
 ```
 require("node-chrome-page")
-  .page("https://google.com", 10)  // will cache this page for next 10 seconds, default is 0 and it means no cache.
+  .page("https://google.com", 10)
   .then(function(html) {
     console.log(html);
   })
@@ -38,3 +52,6 @@ Added cache support.
 
 **v0.0.9:**<br/>
 Fixed a serious cache bug.
+
+**v0.1.1:**<br/>
+Added cache file name support.

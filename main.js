@@ -1,6 +1,5 @@
 module.exports = exports = function() {
   var LZUTF8 = require("lzutf8");
-  var pageCache = require("node-file-cache").create({life: 3600}); //default cache time: 1 hour
   var app = {
     binaryPath: function() {
       var puppeteer = require("puppeteer");
@@ -10,7 +9,9 @@ module.exports = exports = function() {
       var revisionInfo = browserFetcher.revisionInfo(revision);
       return revisionInfo.executablePath;
     },
-    page: function(link, time) {
+    page: function(link, time, file) {
+      if (typeof file === "undefined") file = "node-chrome-page.json";
+      var pageCache = require("node-file-cache").create({life: 3600, file: file}); //default cache time: 1 hour
       return new Promise(function(resolve, reject) {
         (async function() {
           if (typeof time === "undefined") time = 0; // no cache
