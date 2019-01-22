@@ -1,7 +1,22 @@
 # node-chrome-page
 Simply fetch any web page using chrome browser after the page's JavaScript is loaded.
 
-Example:
+**Example (from v0.0.9 to latest):**
+
+```
+var chromePage = require("node-chrome-page");
+var chrome = new chromePage();
+chrome
+  .page("https://google.com", 10)  // will cache this page for next 10 seconds, default is 0 and it means no cache.
+  .then(function(html) {
+    console.log(html);
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+```
+
+**Example (till v0.0.8):**
 
 ```
 require("node-chrome-page")

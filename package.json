@@ -1,6 +1,6 @@
 {
   "name": "node-chrome-page",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Simply fetch any web page using Chrome browser after the page's JavaScript is loaded.",
   "main": "main.js",
   "scripts": {
