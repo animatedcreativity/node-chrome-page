@@ -1,6 +1,6 @@
 {
   "name": "node-chrome-page",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Simply fetch any web page using Chrome browser after the page's JavaScript is loaded.",
   "main": "main.js",
   "scripts": {
@@ -10,7 +10,8 @@
     "selenium-webdriver": "^3.6.0",
     "chromedriver": "^2.45.0",
     "puppeteer": "^1.11.0",
-    "node-file-cache": "^1.0.2"
+    "node-file-cache": "^1.0.2",
+    "lzutf8": "^0.5.5"
   },
   "engines": {
     "node": "8.x"

@@ -20,3 +20,6 @@ require("node-chrome-page")
 
 **v0.0.6:**<br/>
 Added cache support.
+
+**v0.0.9:**<br/>
+Fixed a serious cache bug.
