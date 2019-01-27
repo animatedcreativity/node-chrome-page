@@ -1,5 +1,14 @@
-module.exports = exports = function() {
+module.exports = exports = function(config) {
+  var sanitize = require("node-sanitize-options");
   var LZUTF8 = require("lzutf8");
+  config = sanitize.options(config, {
+    time: 0, // page cache time - not set for now
+    timeouts: {
+      implicit: 5, // seconds
+      pageLoad: 5, // seconds
+      script: 5, // seconds
+    }
+  });
   var app = {
     binaryPath: function() {
       var puppeteer = require("puppeteer");
@@ -32,6 +41,7 @@ module.exports = exports = function() {
               .forBrowser('chrome')
               .setChromeOptions(options)
               .build();
+            await driver.manage().setTimeouts({implicit: config.timeouts.implicit * 1000, pageLoad: config.timeouts.pageLoad * 1000, script: config.timeouts.script * 1000});
             await driver.get(link);
             await driver.executeScript("return document.body.innerHTML")
               .then(function(html) {
@@ -49,3 +59,7 @@ module.exports = exports = function() {
   }
   return app;
 };
+/*var chrome = new exports();
+chrome.page("https://google.com").then(function(html) {
+  console.log(html);
+});*/
