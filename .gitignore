@@ -68,3 +68,4 @@ shrinkwrap.yaml
 ip.sh
 store.json
 node-chrome-page.json
+node-chrome-page-cache
