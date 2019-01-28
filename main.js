@@ -1,9 +1,5 @@
-module.exports = exports = function(config) {
-  var sanitize = require("node-sanitize-options");
-  var LZUTF8 = require("lzutf8");
-  config = sanitize.options(config, {
-    time: 0 // page cache time - not set for now
-  });
+module.exports = exports = function() {
+  var bigCache = require("node-big-cache");
   var app = {
     binaryPath: function() {
       var puppeteer = require("puppeteer");
@@ -14,14 +10,18 @@ module.exports = exports = function(config) {
       return revisionInfo.executablePath;
     },
     page: function(link, time, file) {
-      if (typeof file === "undefined") file = "node-chrome-page.json";
-      var pageCache = require("node-file-cache").create({life: 3600, file: file}); //default cache time: 1 hour
+      if (typeof file === "undefined" || !file) file = "node-chrome-page.json";
+      var pageCache = new bigCache({
+        folder: file.split(".")[0] + "-cache",
+        jsonFile: file
+        /* cacheTime: using default 1 hour */
+      });
       return new Promise(function(resolve, reject) {
         (async function() {
           if (typeof time === "undefined") time = 0; // no cache
           var html = pageCache.get(link);
           if (html != null && typeof html !== "undefined" && time > 0) {
-            resolve(LZUTF8.decompress(html, {inputEncoding: "Base64"}));
+            resolve(html);
           } else {
             var webdriver = require('selenium-webdriver');
             var chrome = require('selenium-webdriver/chrome');
@@ -39,7 +39,7 @@ module.exports = exports = function(config) {
             await driver.get(link);
             await driver.executeScript("return document.body.innerHTML")
               .then(function(html) {
-                if (time > 0) pageCache.set(link, LZUTF8.compress(html, {outputEncoding: "Base64"}), {life: time});
+                if (time > 0) pageCache.set(link, html, time * 1000);
                 resolve(html);
               })
               .catch(function(error) {
@@ -53,7 +53,3 @@ module.exports = exports = function(config) {
   }
   return app;
 };
-/*var chrome = new exports();
-chrome.page("https://google.com").then(function(html) {
-  console.log(html);
-});*/
