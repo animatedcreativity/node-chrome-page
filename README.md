@@ -55,3 +55,6 @@ Fixed a serious cache bug.
 
 **v0.1.1:**<br/>
 Added cache file name support.
+
+**v0.1.4:**<br/>
+Added large cache support using `node-big-cache`: https://www.npmjs.com/package/node-big-cache
