@@ -37,6 +37,8 @@ module.exports = exports = function() {
               .setChromeOptions(options)
               .build();
             await driver.get(link);
+            await driver.executeScript('alert = function(){};');
+            await driver.executeScript('confirm = function(){};');
             await driver.executeScript("return document.body.innerHTML")
               .then(function(html) {
                 if (time > 0) pageCache.set(link, html, time * 1000);
