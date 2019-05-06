@@ -37,6 +37,7 @@ module.exports = exports = function() {
                 await page.waitFor(5000);
                 var html = await page.evaluate(() => document.body.innerHTML);
                 await browser.close();
+                if (time > 0) pageCache.set(link, html, time * 1000);
                 resolve(html);
               });
             } catch(error) {
