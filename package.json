@@ -1,17 +1,17 @@
 {
   "name": "node-chrome-page",
-  "version": "0.1.6",
-  "description": "Simply fetch any web page using Chrome browser after the page's JavaScript is loaded.",
+  "version": "0.1.7",
+  "description": "Simply fetch any web page using Chrome browser after the page's JavaScript is loaded. Now using Puppeteer with stealth mode.",
   "main": "main.js",
   "scripts": {
     "start": "node main.js"
   },
   "dependencies": {
-    "chromedriver": "^2.45.0",
     "node-big-cache": "^0.0.3",
-    "node-sanitize-options": "^0.0.4",
-    "puppeteer": "^1.11.0",
-    "selenium-webdriver": "^3.6.0"
+    "node-sanitize-options": "^0.0.6",
+    "puppeteer": "^1.15.0",
+    "puppeteer-extra": "^2.1.3",
+    "puppeteer-extra-plugin-stealth": "^2.2.2"
   },
   "engines": {
     "node": "8.x"
@@ -23,8 +23,9 @@
   "keywords": [
     "node",
     "chrome",
-    "selenium-webdriver",
-    "chromedriver",
-    "puppeteer"
+    "puppeteer",
+    "html",
+    "stealth",
+    "cache"
   ]
 }
