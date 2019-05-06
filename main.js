@@ -23,25 +23,31 @@ module.exports = exports = function() {
           if (html != null && typeof html !== "undefined" && time > 0) {
             resolve(html);
           } else {
-            try {
-              var puppeteer = require("puppeteer-extra");
-              var pluginStealth = require("puppeteer-extra-plugin-stealth");
-              puppeteer.use(pluginStealth());
-              puppeteer.launch({
-                headless: true,
-                args: ['--no-sandbox', '--disable-setuid-sandbox']
-              }).then(async function(browser) {
-                var page = await browser.newPage();
-                await page.setViewport({width: 800, height: 600});
-                await page.goto("https://google.com");
-                await page.waitFor(5000);
-                var html = await page.evaluate(() => document.body.innerHTML);
-                await browser.close();
+            var webdriver = require('selenium-webdriver');
+            var chrome = require('selenium-webdriver/chrome');
+            require('chromedriver');
+            let options = new chrome.Options();
+            options.setChromeBinaryPath(app.binaryPath());
+            options.addArguments('--headless');
+            options.addArguments('--disable-gpu');
+            options.addArguments('--no-sandbox');
+            options.addArguments('--window-size=1280,960');
+            var driver = await new webdriver.Builder()
+              .forBrowser('chrome')
+              .setChromeOptions(options)
+              .build();
+            await driver.get(link);
+            await driver.executeScript('alert = function(){};');
+            await driver.executeScript('confirm = function(){};');
+            await driver.executeScript("return document.body.innerHTML")
+              .then(function(html) {
+                if (time > 0) pageCache.set(link, html, time * 1000);
                 resolve(html);
+              })
+              .catch(function(error) {
+                reject(error);
               });
-            } catch(error) {
-              reject(error);
-            }
+            await driver.quit();
           }
         })();
       });

@@ -1,5 +1,5 @@
 # node-chrome-page
-Simply fetch any web page using Chrome browser after the page's JavaScript is loaded. Now using Puppeteer with stealth mode.
+Simply fetch any web page using chrome browser after the page's JavaScript is loaded.
 
 --------------------------------------------
 
